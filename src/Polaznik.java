@@ -1,4 +1,6 @@
-public class Polaznik implements Comparable<Polaznik> {
+import javax.print.DocFlavor;
+
+public class Polaznik implements Comparable<Polaznik>{
     private String ime;
     private String prezime;
     private String mail;
@@ -22,11 +24,6 @@ public class Polaznik implements Comparable<Polaznik> {
         return "Ime: " + ime + ", prezime: " + prezime + ", e-mail: " + mail;
     }
 
-    @Override
-    public int compareTo(Polaznik o) {
-        return Integer.compare(this.hashCode(), o.hashCode());
-    }
-
     // Poboljšana implementacija equals metode kako bi HashSet mogao uspoređivati polaznike po emailu
     @Override
     public boolean equals(Object anObject) {
@@ -43,5 +40,10 @@ public class Polaznik implements Comparable<Polaznik> {
     @Override
     public int hashCode() {
         return mail.hashCode();
+    }
+
+    @Override
+    public int compareTo(Polaznik o) {
+        return this.getMail().compareTo(o.getMail());
     }
 }

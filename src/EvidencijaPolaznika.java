@@ -1,9 +1,12 @@
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class EvidencijaPolaznika {
     public static void main(String[] args) {
-        HashSet<Polaznik> listaPolaznika = new HashSet<>();
+        //HashSet<Polaznik> listaPolaznika = new HashSet<>();
+        TreeSet<Polaznik> stabloPolaznika = new TreeSet<>();
 
         Scanner sc = new Scanner(System.in);
         do {
@@ -28,15 +31,15 @@ public class EvidencijaPolaznika {
                     Polaznik temp = new Polaznik(ime, prezime, email);
                     boolean isitKorisnik = false;
                     // Dodaj novog korisnika ako je lista prazna
-                    if (listaPolaznika.isEmpty())
-                        listaPolaznika.add(temp);
+                    if (stabloPolaznika.isEmpty())
+                        stabloPolaznika.add(temp);
                         // Ako lista nije prazna, provjeri je li novi korisnik ima isti mail kao netko iz liste
                     else {
-                        for (Polaznik p : listaPolaznika) {
+                        for (Polaznik p : stabloPolaznika) {
                             if (temp.equals(p)) {
                                 System.out.println("Uneseni korisnik se vec nalazi u listi.");
                                 System.out.println("Neuspjelo dodavanje polaznika.");
-                                listaPolaznika.remove(temp);
+                                stabloPolaznika.remove(temp);
                                 isitKorisnik = true;
                                 break;
                             }
@@ -45,12 +48,12 @@ public class EvidencijaPolaznika {
                     // Ne postoji vec unesen polaznik, dodaj ga u listu
                     if (!isitKorisnik) {
                         System.out.println("Uspjesno dodavanje polaznika u evidenciju.");
-                        listaPolaznika.add(temp);
+                        stabloPolaznika.add(temp);
                     }
                     System.out.println("----------------------------");
                 }
                 case "2" -> {
-                    for (Polaznik polaznik : listaPolaznika) {
+                    for (Polaznik polaznik : stabloPolaznika) {
                         System.out.println(polaznik);
                     }
                     System.out.println("----------------------------");
@@ -59,7 +62,7 @@ public class EvidencijaPolaznika {
                     System.out.println("Unesite mail po kojem zelite pretrazili je li postoji polaznik");
                     String mailInput = sc.nextLine();
                     boolean postojiKorisnik = false;
-                    for (Polaznik p : listaPolaznika) {
+                    for (Polaznik p : stabloPolaznika) {
                         if (p.getMail().equals(mailInput)) {
                             System.out.println("Polaznik se nalazi u listi: ");
                             System.out.println(p);
