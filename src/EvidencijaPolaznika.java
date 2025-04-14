@@ -33,7 +33,7 @@ public class EvidencijaPolaznika {
                         // Ako lista nije prazna, provjeri je li novi korisnik ima isti mail kao netko iz liste
                     else {
                         for (Polaznik p : listaPolaznika) {
-                            if (temp.getMail().equals(p.getMail())) {
+                            if (temp.equals(p)) {
                                 System.out.println("Uneseni korisnik se vec nalazi u listi.");
                                 System.out.println("Neuspjelo dodavanje polaznika.");
                                 listaPolaznika.remove(temp);

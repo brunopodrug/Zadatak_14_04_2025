@@ -26,4 +26,22 @@ public class Polaznik implements Comparable<Polaznik> {
     public int compareTo(Polaznik o) {
         return Integer.compare(this.hashCode(), o.hashCode());
     }
+
+    // Poboljšana implementacija equals metode kako bi HashSet mogao uspoređivati polaznike po emailu
+    @Override
+    public boolean equals(Object anObject) {
+        if (this == anObject)
+            return true;
+        if (anObject == null || anObject.getClass() != getClass())
+            return false;
+
+        Polaznik polaznik = (Polaznik) anObject;
+        return mail.equals(polaznik.mail);
+    }
+
+    // Poboljšana implementacija hashCode metode kako bi HashSet mogao ispravno pohraniti polaznike
+    @Override
+    public int hashCode() {
+        return mail.hashCode();
+    }
 }
